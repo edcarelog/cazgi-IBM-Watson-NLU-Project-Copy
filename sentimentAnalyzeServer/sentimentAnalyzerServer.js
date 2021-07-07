@@ -1,12 +1,12 @@
 const express = require('express');
 const app = new express();
+const dotenv = require('dotenv');
+dotenv.config();
+
 app.use(express.static('client'))
 
 const cors_app = require('cors');
 app.use(cors_app());
-
-const dotenv = require('dotenv');
-dotenv.config();
 
 function getNLUInstance() {
     let api_key = process.env.API_KEY;
@@ -16,15 +16,42 @@ function getNLUInstance() {
     const { IamAuthenticator } = require('ibm-watson/auth');
 
     const naturalLanguageUnderstanding = new NaturalLanguageUnderstandingV1({
-        version: '2020-08-01',
+        version: '2021-03-25',
         authenticator: new IamAuthenticator({
-            apikey: api_key,
+            apikey: api_key, 
         }),
-        serviceUrl: api_url,
+        serviceUrl: api_url,  
     });
+    
+
+const analyzeParams = {
+    'url': 'www.ibm.com',
+    'features': {
+      'entities': {
+        'emotion': true,
+        'sentiment': true,
+        'limit': 2,
+      },
+      'keywords': {
+        'emotion': true,
+        'sentiment': true,
+        'limit': 2,
+      },
+    },
+};
+
+naturalLanguageUnderstanding.analyze(analyzeParams)
+    .then(analysisResults => {
+      console.log(JSON.stringify(analysisResults, null, 2));
+    })
+    .catch(err => {
+      console.log('error:', err);
+    });
+
     return naturalLanguageUnderstanding;
 }
 
+    
     app.get("/url/emotion", (req,res) => {
         return res.send("Response about emotion"+req.query.emotion);
     });
