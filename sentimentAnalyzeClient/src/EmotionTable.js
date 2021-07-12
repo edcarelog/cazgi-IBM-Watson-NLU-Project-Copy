@@ -38,8 +38,6 @@ render() {
   const colorStyle = { color:this.props.color,fontSize:this.props.size+"px"}
     // eslint-disable-next-line no-unused-vars
     let li_ctr = 0;  
-  // eslint-disable-next-line no-lone-blocks
-  {JSON.stringify(this.props.emotions)}     
   return ( 
     <div style={colorStyle}>
        Events List

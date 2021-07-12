@@ -8,19 +8,22 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
-    "react": "^17.0.1",
+    "build": "^0.1.4",
+    "jquery": "^3.6.0",
+    "react": "^17.0.2",
     "react-bootstrap": "^1.4.0",
-    "react-dom": "^17.0.1",
+    "react-dom": "^17.0.2",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && rm -rf ../sentimentAnalyzeServer/client &&mv build ../sentimentAnalyzeServer/client",
+    "build": "react-scripts build && del ..\\sentimentAnalyzeServer\\client && dir && move build ..\\sentimentAnalyzeServer\\client",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+
     "extends": [
       "react-app",
       "react-app/jest"
@@ -37,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "typescript": "^4.3.5"
   }
 }
